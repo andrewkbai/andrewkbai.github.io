@@ -1,22 +1,60 @@
-
 import { useState } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { Mail } from "lucide-react";
+import { createClient } from '@supabase/supabase-js';
+
+// 1) Initialize Supabase client
+const supabaseUrl = import.meta.env.VITE_SUPABASE_URL!;
+const supabaseAnonKey = import.meta.env.VITE_SUPABASE_ANON_KEY!;
+const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const WaitlistForm = () => {
   const [email, setEmail] = useState('');
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (email) {
+
+    if (!email) return;
+
+    const emailRegex = /^[\w.-]+@[\w-]+\.[a-z]{2,}$/i;
+    if (!emailRegex.test(email)) {
       toast({
-        title: "You're on the list!",
-        description: "Thanks for joining. We'll keep you updated on our launch.",
+        title: "Invalid email",
+        description: "Please enter a valid email address.",
+        variant: "destructive",
       });
-      setEmail('');
+      return;
+    }
+
+    try {
+      const { data, error } = await supabase
+        .from('waitlist_tgchannel')
+        .insert([{ email }]);
+
+      if (error) {
+        console.error('Insert error:', error);
+        toast({
+          title: "Error",
+          description: "Something went wrong. Please try again later.",
+          variant: "destructive",
+        });
+      } else {
+        toast({
+          title: "You're on the list!",
+          description: "Thanks for joining. We'll keep you updated.",
+        });
+        setEmail('');
+      }
+    } catch (err) {
+      console.error('Unexpected error:', err);
+      toast({
+        title: "Error",
+        description: "Something went wrong. Please try again later.",
+        variant: "destructive",
+      });
     }
   };
 
