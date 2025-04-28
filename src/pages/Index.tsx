@@ -4,7 +4,7 @@ import FeatureCard from "@/components/FeatureCard";
 const features = [
   {
     title: "Expert Mind Put in AI",
-    description: "An AI infused with the mind and strategy of top admissions experts. Trained only on what works - not just another ChatGPT wrapper."
+    description: "An AI infused with the mind and strategy of top admissions experts. Trained only on what works – not just another ChatGPT wrapper."
   },
   {
     title: "Build a Story That Moves",
@@ -20,19 +20,17 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col items-center justify-start text-center px-4 pt-12 sm:pt-32 bg-white">
       <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-6xl font-bold text-[#16a085] mb-4 md:mb-6">
+        <h1 className="text-4xl md:text-6xl font-bold text-[#16a085] mb-6 md:mb-8">
           Admittere.<br />Your path to Excellence.
         </h1>
-      <p className="text-xl md:text-2xl text-gray-600 max-w-4xl leading-relaxed mx-auto mb-8 md:mb-12">
-        Join the waitlist for a personal college admissions mentor that is smarter, faster, and simply better.
-      </p>
-      <WaitlistForm />
+        <p className="text-xl md:text-2xl text-gray-600 max-w-4xl leading-relaxed mx-auto mb-6 md:mb-8">
+          Join the waitlist for a personal college admissions mentor that is smarter, faster, and simply better.
+        </p>
+        <WaitlistForm />
       </div>
-    </div>
-
 
       {/* Features Section */}
-      <div className="bg-white py-24">
+      <div className="bg-white py-24 w-full">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16 text-[#1A1F2C]">
             Why Choose Admittere?
@@ -50,7 +48,7 @@ const Index = () => {
       </div>
 
       {/* Footer */}
-      <footer className="py-8 text-center text-gray-600">
+      <footer className="py-8 text-center text-gray-600 w-full">
         <div className="container mx-auto px-4">
           <p>© 2025 Admittere.com | Making College Admissions Better For Everyone.</p>
         </div>
