@@ -15,45 +15,48 @@ const WaitlistForm = () => {
   const { toast } = useToast();
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!email) return;
+  if (!email) return;
 
-    const emailRegex = /^[\w.-]+@[\w-]+\.[a-z]{2,}$/i;
-    if (!emailRegex.test(email)) {
-      toast({
-        title: "Invalid email",
-        description: "Please enter a valid email address.",
-        variant: "destructive",
-      });
-      return;
-    }
+  const lastSubmitted = localStorage.getItem('submitted_email');
 
-    try {
-      const { data, error } = await supabase
-        .from('waitlist_tgchannel')
-        .insert([{ email }]);
+  if (lastSubmitted === email) {
+    toast({
+      title: "Already submitted!",
+      description: "You already joined the waitlist.",
+      variant: "destructive",
+    });
+    return;
+  }
 
-      if (error) {
-        console.error('Insert error:', error);
-        toast({
-          title: "Error",
-          description: "Something went wrong. Please try again later.",
-          variant: "destructive",
-        });
-      } else {
-        toast({
-          title: "You're on the list!",
-          description: "Thanks for joining. We'll keep you updated.",
-        });
-        setEmail('');
-      }
-    } catch (err) {
-      console.error('Unexpected error:', err);
+  // Normal submission continues here
+  try {
+    const { data, error } = await supabase
+      .from('waitlist_tgchannel') // adjust your table name
+      .insert([{ email }]);
+
+    if (error) {
+      console.error('Insert error:', error);
       toast({
         title: "Error",
         description: "Something went wrong. Please try again later.",
         variant: "destructive",
+      });
+    } else {
+      localStorage.setItem('submitted_email', email); // ✅ Save the email after success
+      toast({
+        title: "You're on the list!",
+        description: "Thanks for joining. We'll keep you updated.",
+      });
+      setEmail('');
+    }
+  } catch (err) {
+    console.error('Unexpected error:', err);
+    toast({
+      title: "Error",
+      description: "Something went wrong. Please try again later.",
+      variant: "destructive",
       });
     }
   };
