@@ -53,7 +53,7 @@ const Index = () => {
       {/* Footer */}
       <footer className="py-8 text-center text-gray-600 w-full">
         <div className="container mx-auto px-4">
-          <p>© 2025 Admittere.com | Making College Admissions Better For Everyone.</p>
+          <p>© 2025 Admittere.com | Making College Admissions Better For Everyone</p>
         </div>
       </footer>
     </div>
