@@ -36,7 +36,7 @@ const Index = () => {
       {/* Features Section */}
       <div className="bg-white py-24">
         <div className="container mx-auto px-4">
-          <h2 className="text-3xl md:text-4xl font-bold text-center mb-16 text-[#1A1F2C]">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-8 md:mb-16 text-[#1A1F2C]">
             Why Choose Admittere?
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
