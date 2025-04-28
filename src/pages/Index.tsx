@@ -18,15 +18,18 @@ const features = [
 
 const Index = () => {
   return (
-    <div className="min-h-screen flex flex-col items-center justify-start text-center px-4 pt-12 sm:pt-32 bg-white">
-      <div className="max-w-4xl mx-auto">
-        <h1 className="text-4xl md:text-6xl font-bold text-[#16a085] mb-6 md:mb-8">
-          Admittere.<br />Your path to Excellence.
-        </h1>
-        <p className="text-xl md:text-2xl text-gray-600 max-w-4xl leading-relaxed mx-auto mb-6 md:mb-8">
-          Join the waitlist for a personal college admissions mentor that is smarter, faster, and simply better.
-        </p>
-        <WaitlistForm />
+    <div className="min-h-screen bg-white">
+      {/* Hero Section */}
+      <div className="h-screen flex flex-col items-center justify-center text-center px-4 bg-white">
+        <div className="relative max-w-4xl mx-auto transform -translate-y-8 sm:-translate-y-16">
+          <h1 className="text-4xl md:text-6xl font-bold mb-6 text-[#16a085]">
+            Admittere.<br />Your path to Excellence.
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-600 mb-12 max-w-4xl leading-relaxed mx-auto mt-6">
+            Join the waitlist for a personal college admissions mentor that is <br />smarter, faster, and simply better.
+          </p>
+          <WaitlistForm />
+        </div>
       </div>
 
       {/* Features Section */}
